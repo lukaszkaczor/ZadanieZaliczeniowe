@@ -1,0 +1,48 @@
+﻿@model ZadanieZaliczeniowe.Models.JsonObject
+@{
+    ViewBag.Title = "( ͡° ͜ʖ ͡°)";
+}
+
+<h4>Wykaz przedsiębiorców, wobec których wszczęto postępowanie w sprawie wykreślenia z rejestru</h4>
+<h6>Czas serwera: @Model.Meta.ServerTime</h6>
+
+<table>
+    <thead>
+    <tr>
+        <th>@Model.Meta.HeadersMap.Id</th>
+        <th>@Model.Meta.HeadersMap.RegistrationNumber</th>
+        <th>@Model.Meta.HeadersMap.RegistryEntry</th>
+        <th>@Model.Meta.HeadersMap.TaxNumber</th>
+        <th>@Model.Meta.HeadersMap.CompanyName</th>
+        <th>@Model.Meta.HeadersMap.Voivodeship</th>
+        <th>@Model.Meta.HeadersMap.ZipCode</th>
+        <th>@Model.Meta.HeadersMap.City</th>
+        <th>@Model.Meta.HeadersMap.Address</th>
+        <th>@Model.Meta.HeadersMap.HouseNumber</th>
+        <th>@Model.Meta.HeadersMap.LegalForm</th>
+        <th>@Model.Meta.HeadersMap.DateOcurredHeader</th>
+        <th>@Model.Meta.HeadersMap.DeliveryDateHeader</th>
+        <th>@Model.Meta.HeadersMap.BookStatus</th>
+    </tr>
+    </thead>
+
+    @foreach (var item in Model.JsonData)
+    {
+        <tr>
+            <td>@item.Attributes.Id.Remove(item.Attributes.Id.IndexOf("."))</td>
+            <td>@item.Attributes.RegistrationNumber.Remove(item.Attributes.RegistrationNumber.IndexOf("."))</td>
+            <td>@item.Attributes.RegistryEntry</td>
+            <td>@item.Attributes.TaxNumber.Remove(item.Attributes.TaxNumber.IndexOf("."))</td>
+            <td>@item.Attributes.CompanyName</td>
+            <td>@item.Attributes.Voivodeship</td>
+            <td>@item.Attributes.ZipCode</td>
+            <td>@item.Attributes.City</td>
+            <td>@item.Attributes.Address</td>
+            <td>@item.Attributes.HouseNumber</td>
+            <td>@item.Attributes.LegalForm</td>
+            <td>@item.Attributes.DateOccurred.ToString("dd MMMM yyyy")</td>
+            <td>@item.Attributes.DeliveryDate.ToString("dd MMMM yyyy")</td>
+            <td>@item.Attributes.BookStatus</td>
+        </tr>
+    }
+</table>
